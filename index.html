@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-PT">
 <head>
 <meta charset="UTF-8">
@@ -290,6 +290,20 @@
   .service-card ul{margin-top:16px;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:8px;}
   .service-card li{font-size:13.5px;color:var(--text-muted);padding-left:18px;position:relative;}
   .service-card li::before{content:"•";position:absolute;left:0;color:var(--gold);}
+
+  /* CRM PROMO */
+  .crm-promo{
+    margin-top:26px;padding:34px;border-radius:var(--radius);
+    background:linear-gradient(135deg,rgba(212,175,106,0.10),rgba(15,61,46,0.14));
+    border:1px solid var(--border-strong);
+    display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap;
+  }
+  .crm-promo-text{flex:1;min-width:260px;}
+  .crm-promo-text h3{font-size:22px;margin-bottom:10px;}
+  .crm-promo-text p{color:var(--text-muted);font-size:14.5px;max-width:560px;}
+  .crm-promo-actions{display:flex;flex-direction:column;gap:12px;min-width:220px;}
+  .crm-promo-actions .btn{width:100%;}
+  @media(max-width:640px){.crm-promo{padding:26px 22px;}}
 
   /* ABOUT */
   .about-grid{display:grid;grid-template-columns:0.85fr 1.15fr;gap:60px;align-items:start;}
@@ -826,6 +840,18 @@
             <li>Construção e implementação de CRM que recebe e organiza automaticamente os leads dos anúncios</li>
             <li>Nutrição automática dos leads até estarem prontos para venda</li>
           </ul>
+        </div>
+      </div>
+
+      <div class="crm-promo reveal">
+        <div class="crm-promo-text">
+          <div class="eyebrow">TurboCRM</div>
+          <h3>Um ecossistema para angariar, nutrir e organizar leads e clientes</h3>
+          <p>O CRM que construímos para a nossa própria operação, agora disponível para testar durante 14 dias, sem custo. Centraliza a angariação, a nutrição automática e a organização de leads e clientes num único sistema.</p>
+        </div>
+        <div class="crm-promo-actions">
+          <a class="btn btn-primary" href="https://turbocrm.higgsfield.app/" target="_blank" rel="noopener">Testar Grátis 14 Dias</a>
+          <a class="btn btn-ghost" href="https://wa.me/351928406024?text=Ol%C3%A1%20Miguel%2C%20quero%20saber%20mais%20sobre%20o%20TurboCRM." target="_blank" rel="noopener">Saber mais no WhatsApp</a>
         </div>
       </div>
     </div>
