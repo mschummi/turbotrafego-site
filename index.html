@@ -301,17 +301,32 @@
 
   /* CRM PROMO */
   .crm-promo{
-    margin-top:26px;padding:34px;border-radius:var(--radius);
-    background:linear-gradient(135deg,rgba(212,175,106,0.10),rgba(15,61,46,0.14));
-    border:1px solid var(--border-strong);
+    position:relative;overflow:hidden;
+    margin-top:34px;padding:40px 44px;border-radius:var(--radius);
+    background:linear-gradient(135deg,rgba(212,175,106,0.20),rgba(15,61,46,0.22));
+    border:2px solid var(--gold);
+    box-shadow:0 24px 60px -20px rgba(212,175,106,0.45),0 0 0 1px rgba(212,175,106,0.12) inset;
     display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap;
   }
-  .crm-promo-text{flex:1;min-width:260px;}
-  .crm-promo-text h3{font-size:22px;margin-bottom:10px;}
+  .crm-promo::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(ellipse 420px 220px at 90% -10%,rgba(212,175,106,0.30),transparent 65%);
+  }
+  .crm-badge{
+    position:absolute;top:0;right:28px;transform:translateY(-50%);
+    background:linear-gradient(135deg,var(--gold-strong),var(--gold-deep));
+    color:#151006;font-weight:700;font-size:13px;letter-spacing:0.02em;
+    padding:8px 18px;border-radius:999px;
+    box-shadow:0 8px 20px -6px rgba(212,175,106,0.65);
+  }
+  @media(max-width:520px){.crm-badge{position:static;transform:none;display:inline-block;margin-bottom:14px;}}
+  .crm-promo-text{flex:1;min-width:260px;position:relative;}
+  .crm-promo-text h3{font-size:24px;margin-bottom:10px;}
   .crm-promo-text p{color:var(--text-muted);font-size:14.5px;max-width:560px;}
-  .crm-promo-actions{display:flex;flex-direction:column;gap:12px;min-width:220px;}
+  .crm-promo-actions{display:flex;flex-direction:column;gap:12px;min-width:220px;position:relative;}
   .crm-promo-actions .btn{width:100%;}
-  @media(max-width:640px){.crm-promo{padding:26px 22px;}}
+  .crm-promo-actions .btn-primary{font-size:16px;padding:17px 30px;}
+  @media(max-width:640px){.crm-promo{padding:30px 24px 26px;}}
 
   /* ABOUT */
   .about-grid{display:grid;grid-template-columns:0.85fr 1.15fr;gap:60px;align-items:start;}
@@ -852,13 +867,14 @@
       </div>
 
       <div class="crm-promo reveal">
+        <div class="crm-badge">7 dias grátis</div>
         <div class="crm-promo-text">
           <div class="eyebrow">TurboCRM</div>
           <h3>Um ecossistema para angariar, nutrir e organizar leads e clientes</h3>
-          <p>O CRM que construímos para a nossa própria operação, agora disponível para testar durante 14 dias, sem custo. Centraliza a angariação, a nutrição automática e a organização de leads e clientes num único sistema.</p>
+          <p>O CRM que construímos para a nossa própria operação, agora disponível para testar durante 7 dias, sem custo. Centraliza a angariação, a nutrição automática e a organização de leads e clientes num único sistema.</p>
         </div>
         <div class="crm-promo-actions">
-          <a class="btn btn-primary" href="https://turbocrm.higgsfield.app/" target="_blank" rel="noopener">Testar Grátis 14 Dias</a>
+          <a class="btn btn-primary" href="https://turbocrm.higgsfield.app/" target="_blank" rel="noopener">Testar Grátis 7 Dias</a>
           <a class="btn btn-ghost" href="https://wa.me/351928406024?text=Ol%C3%A1%20Miguel%2C%20quero%20saber%20mais%20sobre%20o%20TurboCRM." target="_blank" rel="noopener">Saber mais no WhatsApp</a>
         </div>
       </div>
