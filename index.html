@@ -239,6 +239,20 @@
   .chip-2{bottom:-16px;left:-18px;}
   @media(max-width:960px){.float-chip{display:none;}}
 
+  /* HERO CINEMA EFFECT (decorativo, sem video real, so na Hero) */
+  .hero-cinema{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.6;display:block;}
+  .hero .wrap{position:relative;z-index:1;}
+  .hero::after{
+    content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+    background:linear-gradient(180deg,transparent 45%,rgba(8,8,8,.55) 100%);
+    opacity:var(--cinema-p,0);
+  }
+  @media(max-width:720px){.hero-cinema{opacity:.4;}}
+  @media(prefers-reduced-motion:reduce){
+    .hero-cinema{display:none;}
+    .hero::after{display:none;}
+  }
+
   /* SECTION ALT BG */
   .alt{background:var(--bg-alt);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
 
@@ -716,6 +730,7 @@
 
   <!-- HERO -->
   <section class="hero">
+    <canvas class="hero-cinema" aria-hidden="true"></canvas>
     <div class="wrap hero-grid">
       <div>
         <div class="tag-row" style="margin-bottom:22px;">
@@ -1289,6 +1304,131 @@
     });
   }, { threshold: 0.4 });
   document.querySelectorAll('[data-countup]').forEach(el => countObserver.observe(el));
+
+  /* HERO CINEMA: efeito cinematografico simulado (sem video real), so na Hero, sincronizado com o scroll */
+  (function heroCinema() {
+    const hero = document.querySelector('.hero');
+    const canvas = document.querySelector('.hero-cinema');
+    if (!hero || !canvas || reduceMotion) return;
+
+    const ctx = canvas.getContext('2d');
+    /* nota: o parallax aplica-se ao .orbit-card (filho), nunca ao .hero-visual,
+       porque .hero-visual tem a classe .reveal e um transform inline sobreporia
+       sempre a animacao de entrada existente */
+    const heroVisual = hero.querySelector('.hero-visual .orbit-card');
+    const heroCol = hero.querySelector('.hero-grid > div:first-child');
+
+    let w = 0, h = 0, dpr = 1, particles = [], raf = null, running = false;
+
+    function isMobile() { return window.innerWidth <= 720; }
+
+    function sizeCanvas() {
+      const rect = hero.getBoundingClientRect();
+      dpr = Math.min(window.devicePixelRatio || 1, isMobile() ? 1 : 1.5);
+      w = rect.width; h = rect.height;
+      canvas.width = Math.round(w * dpr);
+      canvas.height = Math.round(h * dpr);
+      canvas.style.width = w + 'px';
+      canvas.style.height = h + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function makeParticles() {
+      const count = isMobile() ? 14 : 34;
+      particles = Array.from({ length: count }, () => ({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        r: 0.6 + Math.random() * 1.8,
+        vy: 0.08 + Math.random() * 0.18,
+        vx: (Math.random() - 0.5) * 0.06,
+        a: 0.15 + Math.random() * 0.35
+      }));
+    }
+
+    function drawFrame() {
+      ctx.clearRect(0, 0, w, h);
+
+      /* raio de luz diagonal, estatico */
+      const grad = ctx.createLinearGradient(0, 0, w, h);
+      grad.addColorStop(0, 'rgba(212,175,106,0.10)');
+      grad.addColorStop(0.45, 'rgba(212,175,106,0.02)');
+      grad.addColorStop(1, 'rgba(212,175,106,0)');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, w, h);
+
+      /* particulas tipo poeira dourada, a flutuar lentamente */
+      particles.forEach(p => {
+        p.y -= p.vy;
+        p.x += p.vx;
+        if (p.y < -5) { p.y = h + 5; p.x = Math.random() * w; }
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(212,175,106,${p.a})`;
+        ctx.fill();
+      });
+    }
+
+    function loop() {
+      if (!running) return;
+      drawFrame();
+      raf = requestAnimationFrame(loop);
+    }
+
+    function start() {
+      if (running) return;
+      running = true;
+      raf = requestAnimationFrame(loop);
+    }
+
+    function stop() {
+      running = false;
+      if (raf) cancelAnimationFrame(raf);
+    }
+
+    sizeCanvas();
+    makeParticles();
+
+    const heroObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) start(); else stop();
+      });
+    }, { threshold: 0.01 });
+    heroObserver.observe(hero);
+
+    /* PARALLAX SINCRONIZADO COM O SCROLL, so enquanto a Hero esta visivel */
+    let ticking = false;
+    function updateParallax() {
+      ticking = false;
+      const rect = hero.getBoundingClientRect();
+      const p = Math.min(Math.max(-rect.top / rect.height, 0), 1);
+      hero.style.setProperty('--cinema-p', p.toFixed(3));
+      if (heroCol) {
+        heroCol.style.transform = `translateY(${(p * -40).toFixed(1)}px)`;
+        heroCol.style.opacity = (1 - p * 0.7).toFixed(2);
+      }
+      if (heroVisual) {
+        heroVisual.style.transform = `translateY(${(p * 26).toFixed(1)}px) scale(${(1 - p * 0.06).toFixed(3)})`;
+      }
+    }
+    function onScroll() {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(updateParallax);
+      }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    updateParallax();
+
+    let resizeTimer = null;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        sizeCanvas();
+        makeParticles();
+        updateParallax();
+      }, 200);
+    });
+  })();
 </script>
 
 </body>
