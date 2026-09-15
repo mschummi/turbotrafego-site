@@ -240,17 +240,21 @@
   @media(max-width:960px){.float-chip{display:none;}}
 
   /* HERO CINEMA EFFECT (decorativo, sem video real, so na Hero) */
-  .hero-cinema{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.6;display:block;}
-  .hero .wrap{position:relative;z-index:1;}
+  .hero-cinema{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:1;display:block;}
+  .hero .wrap{position:relative;z-index:2;}
+  .hero::before{
+    content:"";position:absolute;left:0;right:0;top:0;height:46px;z-index:1;pointer-events:none;
+    background:linear-gradient(180deg,rgba(5,5,5,.9),transparent);
+  }
   .hero::after{
-    content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
-    background:linear-gradient(180deg,transparent 45%,rgba(8,8,8,.55) 100%);
+    content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+    background:linear-gradient(180deg,transparent 40%,rgba(6,6,6,.7) 100%);
     opacity:var(--cinema-p,0);
   }
-  @media(max-width:720px){.hero-cinema{opacity:.4;}}
+  @media(max-width:720px){.hero-cinema{opacity:.85;}}
   @media(prefers-reduced-motion:reduce){
     .hero-cinema{display:none;}
-    .hero::after{display:none;}
+    .hero::before,.hero::after{display:none;}
   }
 
   /* SECTION ALT BG */
@@ -1334,38 +1338,45 @@
     }
 
     function makeParticles() {
-      const count = isMobile() ? 14 : 34;
+      const count = isMobile() ? 16 : 38;
       particles = Array.from({ length: count }, () => ({
         x: Math.random() * w,
         y: Math.random() * h,
-        r: 0.6 + Math.random() * 1.8,
-        vy: 0.08 + Math.random() * 0.18,
-        vx: (Math.random() - 0.5) * 0.06,
-        a: 0.15 + Math.random() * 0.35
+        r: 1 + Math.random() * 2.2,
+        vy: 0.12 + Math.random() * 0.26,
+        vx: (Math.random() - 0.5) * 0.08,
+        a: 0.3 + Math.random() * 0.45
       }));
     }
 
+    let t = 0;
     function drawFrame() {
+      t += 1;
       ctx.clearRect(0, 0, w, h);
 
-      /* raio de luz diagonal, estatico */
-      const grad = ctx.createLinearGradient(0, 0, w, h);
-      grad.addColorStop(0, 'rgba(212,175,106,0.10)');
-      grad.addColorStop(0.45, 'rgba(212,175,106,0.02)');
+      /* feixe de luz diagonal em movimento lento, a atravessar a Hero */
+      const sweep = Math.sin(t * 0.0028) * 0.5 + 0.5;
+      const bandX = w * (sweep * 1.4 - 0.2);
+      const grad = ctx.createLinearGradient(bandX - w * 0.5, 0, bandX + w * 0.5, h);
+      grad.addColorStop(0, 'rgba(212,175,106,0)');
+      grad.addColorStop(0.5, 'rgba(212,175,106,0.18)');
       grad.addColorStop(1, 'rgba(212,175,106,0)');
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, w, h);
 
-      /* particulas tipo poeira dourada, a flutuar lentamente */
+      /* particulas tipo poeira dourada, a flutuar lentamente, com brilho */
       particles.forEach(p => {
         p.y -= p.vy;
         p.x += p.vx;
         if (p.y < -5) { p.y = h + 5; p.x = Math.random() * w; }
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(212,175,106,${p.a})`;
+        ctx.shadowColor = 'rgba(212,175,106,0.8)';
+        ctx.shadowBlur = p.r * 2.5;
+        ctx.fillStyle = `rgba(230,195,130,${p.a})`;
         ctx.fill();
       });
+      ctx.shadowBlur = 0;
     }
 
     function loop() {
