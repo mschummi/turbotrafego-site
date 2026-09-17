@@ -112,11 +112,10 @@
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
   section{position:relative;}
   .eyebrow{
-    display:inline-flex;align-items:center;gap:8px;
-    font-size:13px;letter-spacing:0.08em;text-transform:uppercase;
-    color:var(--gold);font-weight:600;margin-bottom:14px;
+    display:inline-flex;align-items:center;
+    font-size:13px;letter-spacing:0.12em;text-transform:uppercase;
+    color:var(--gold);font-weight:700;margin-bottom:14px;
   }
-  .eyebrow::before{content:"";width:18px;height:1px;background:var(--gold);}
   .badge{
     display:inline-block;padding:8px 16px;border:1px solid var(--border);
     border-radius:999px;font-size:13px;color:var(--text-muted);
@@ -124,18 +123,21 @@
   }
   .btn{
     display:inline-flex;align-items:center;justify-content:center;gap:10px;
-    padding:16px 30px;border-radius:12px;font-weight:600;font-size:15px;
+    padding:19px 38px;border-radius:12px;font-weight:700;font-size:17px;
     cursor:pointer;border:1px solid transparent;transition:transform .2s ease,box-shadow .2s ease,background .2s ease;
     white-space:nowrap;
   }
   .btn-primary{
     background:linear-gradient(135deg,var(--gold-strong),var(--gold-deep));
     color:#151006;
-    box-shadow:0 8px 24px -8px rgba(212,175,106,0.55);
+    box-shadow:0 10px 30px -8px rgba(212,175,106,0.6);
   }
-  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 30px -8px rgba(212,175,106,0.7);}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 36px -8px rgba(212,175,106,0.75);}
   .btn-ghost{
-    background:transparent;border:1px solid var(--border);color:var(--text);
+    background:transparent;border:2px solid var(--border);color:var(--text);
+  }
+  @media(max-width:480px){
+    .btn{padding:16px 26px;font-size:15.5px;white-space:normal;text-align:center;}
   }
   .btn-ghost:hover{border-color:var(--border-strong);}
   .section-pad{padding:100px 0;}
@@ -342,28 +344,29 @@
   .crm-promo-text p{color:var(--text-muted);font-size:14.5px;max-width:560px;}
   .crm-promo-actions{display:flex;flex-direction:column;gap:12px;min-width:220px;position:relative;}
   .crm-promo-actions .btn{width:100%;}
-  .crm-promo-actions .btn-primary{font-size:16px;padding:17px 30px;}
+  .crm-promo-actions .btn-primary{font-size:17.5px;padding:20px 30px;}
   @media(max-width:640px){.crm-promo{padding:30px 24px 26px;}}
 
   /* ABOUT */
   .about-grid{display:grid;grid-template-columns:0.85fr 1.15fr;gap:60px;align-items:start;}
   @media(max-width:900px){.about-grid{grid-template-columns:1fr;}}
   .avatar-badge{
-    width:100%;aspect-ratio:1/1;max-width:320px;border-radius:20px;
-    background:linear-gradient(160deg,#1a1a1d,#0c0c0d);border:1px solid var(--border);
+    width:100%;aspect-ratio:1/1;max-width:440px;border-radius:24px;
+    background:linear-gradient(160deg,#1a1a1d,#0c0c0d);border:1px solid var(--border-strong);
     display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;
+    box-shadow:0 24px 60px -20px rgba(0,0,0,0.65);
   }
   .avatar-badge .mono{
-    font-family:'Playfair Display',serif;font-size:96px;color:var(--gold);letter-spacing:-2px;
+    font-family:'Playfair Display',serif;font-size:112px;color:var(--gold);letter-spacing:-2px;
   }
   .avatar-badge img{
     width:100%;height:100%;object-fit:cover;object-position:top center;position:relative;z-index:1;
   }
   .avatar-badge::after{
-    content:"";position:absolute;inset:0;border-radius:20px;z-index:2;pointer-events:none;
-    background:radial-gradient(circle at 30% 20%,rgba(212,175,106,0.16),transparent 60%);
+    content:"";position:absolute;inset:0;border-radius:24px;z-index:2;pointer-events:none;
+    background:radial-gradient(circle at 30% 20%,rgba(212,175,106,0.18),transparent 60%);
   }
-  .avatar-caption{margin-top:16px;max-width:320px;}
+  .avatar-caption{margin-top:18px;max-width:440px;}
   .avatar-caption b{display:block;font-size:16px;}
   .avatar-caption span{font-size:13px;color:var(--gold);}
   .cred-list{display:flex;flex-direction:column;gap:14px;margin-top:26px;}
