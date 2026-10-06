@@ -1,0 +1,24 @@
+# TurboTráfego
+
+> Agência de marketing digital portuguesa que entrega sistemas completos de aquisição de clientes: gestão de tráfego pago (Meta Ads e Google Ads), gestão de redes sociais, automação com inteligência artificial e CRM personalizado, com atendimento e qualificação automática de leads 24 horas por dia.
+
+A TurboTráfego foi fundada por Miguel Conceição e serve empresas, empresários e empreendedores em Portugal. Ao contrário de uma agência de tráfego comum, que entrega apenas relatórios de cliques e impressões, a TurboTráfego integra todo o processo num único sistema: cria e gere o anúncio, responde automaticamente a quem contacta através de agentes de IA, qualifica esse contacto e só depois o encaminha à equipa do cliente, já pronto para comprar ou agendar.
+
+## Secções da página
+
+- [Três pilares, um único sistema](https://agencia.turbotrafego.pt/#servicos): descrição dos três serviços centrais, gestão de tráfego pago, gestão de redes sociais, e automações e agentes de IA.
+- [Como funciona](https://agencia.turbotrafego.pt/#como-funciona): as três etapas do sistema, análise gratuita, estratégia e implementação, acompanhamento contínuo.
+- [Conhecimento aplicado](https://agencia.turbotrafego.pt/#sobre): credenciais e formação de Miguel Conceição e da equipa.
+- [Resultados em negócios reais](https://agencia.turbotrafego.pt/#resultados): seis casos de aplicação com métricas concretas de ROI, leads, marcações e vendas, em setores como apoio domiciliário, clínicas de estética e pilates, e e-commerce.
+- [Perguntas frequentes](https://agencia.turbotrafego.pt/#faq): respostas diretas sobre o serviço, diferenciação face a gestores de tráfego ou agências comuns, investimento, prazos e garantia de 60 dias.
+- [Contacto](https://agencia.turbotrafego.pt/#contacto): WhatsApp, email e Instagram para análise gratuita inicial.
+
+## Serviços
+
+- Gestão de Tráfego Pago (Meta Ads, Google Ads)
+- Gestão de Redes Sociais
+- Automações e Agentes de IA para atendimento e vendas, com CRM personalizado integrado
+
+## Área de atuação
+
+Portugal, com atendimento a empresas, empresários e empreendedores de múltiplos setores.
