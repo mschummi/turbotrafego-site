@@ -3,10 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Política de Privacidade · TurboTráfego</title>
-<meta name="description" content="Política de Privacidade da TurboTráfego, em conformidade com o RGPD, sobre a recolha e o tratamento de dados no site agencia.turbotrafego.pt.">
+<title>Política de Privacidade | TurboTráfego</title>
+<meta name="description" content="Política de Privacidade da TurboTráfego: como recolhemos, usamos e protegemos os seus dados pessoais, em conformidade com o RGPD.">
 <link rel="canonical" href="https://agencia.turbotrafego.pt/privacidade.html">
 <meta name="robots" content="index, follow">
+<meta name="googlebot" content="index, follow">
+<meta name="language" content="Portuguese">
+<meta name="geo.region" content="PT">
+<meta name="geo.placename" content="Portugal">
+<meta name="author" content="Miguel Conceição">
+<link rel="alternate" hreflang="pt-pt" href="https://agencia.turbotrafego.pt/privacidade.html">
+<link rel="alternate" hreflang="x-default" href="https://agencia.turbotrafego.pt/privacidade.html">
+<link rel="icon" type="image/png" href="/logo.png">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TurboTráfego">
+<meta property="og:locale" content="pt_PT">
+<meta property="og:title" content="Política de Privacidade | TurboTráfego">
+<meta property="og:description" content="Como a TurboTráfego recolhe, usa e protege os dados pessoais dos seus clientes e visitantes.">
+<meta property="og:url" content="https://agencia.turbotrafego.pt/privacidade.html">
+
 <meta name="theme-color" content="#0d0d0d">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,93 +31,272 @@
   :root{
     --bg:#0a0a0b;
     --bg-alt:#101012;
+    --card:#151517;
+    --card-2:#18181b;
     --border:rgba(255,255,255,0.08);
+    --border-strong:rgba(212,175,106,0.35);
     --gold:#d4af6a;
+    --gold-strong:#e8c584;
+    --gold-deep:#9c7a34;
+    --green:#0f3d2e;
     --text:#f3efe6;
     --text-muted:#a8a7ac;
     --text-faint:#77767c;
-    --maxw:800px;
+    --radius:16px;
+    --maxw:1180px;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
   body{
     background:var(--bg);
     color:var(--text);
     font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
-    line-height:1.7;
+    line-height:1.6;
     -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
   }
-  h1,h2{
-    font-family:'Playfair Display',Georgia,serif;
-    font-weight:600;
-    line-height:1.25;
-    letter-spacing:-0.01em;
-  }
-  a{color:var(--gold);}
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:60px 24px 90px;}
-  header.top{border-bottom:1px solid var(--border);background:var(--bg-alt);}
-  header.top .wrap{padding:22px 24px;max-width:1180px;display:flex;align-items:center;justify-content:space-between;}
-  .brand-name{font-family:'Playfair Display',Georgia,serif;font-weight:600;font-size:19px;}
+  .bg-fx{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;background:var(--bg);}
+  .bg-fx span{position:absolute;border-radius:50%;filter:blur(130px);will-change:transform;}
+  .bg-fx .b1{width:620px;height:620px;top:-160px;left:-120px;background:radial-gradient(circle,rgba(212,175,106,0.20),transparent 70%);animation:bgDrift1 34s ease-in-out infinite alternate;}
+  .bg-fx .b2{width:560px;height:560px;bottom:-180px;right:-140px;background:radial-gradient(circle,rgba(156,122,52,0.20),transparent 70%);animation:bgDrift2 40s ease-in-out infinite alternate;}
+  @keyframes bgDrift1{0%{transform:translate(0,0) scale(1);}100%{transform:translate(90px,60px) scale(1.15);}}
+  @keyframes bgDrift2{0%{transform:translate(0,0) scale(1);}100%{transform:translate(-70px,-50px) scale(1.1);}}
+  @media(prefers-reduced-motion:reduce){.bg-fx span{animation:none;}}
+  h1,h2,h3{font-family:'Playfair Display',Georgia,serif;font-weight:600;line-height:1.26;letter-spacing:-0.01em;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:19px 38px;border-radius:12px;font-weight:700;font-size:17px;cursor:pointer;border:1px solid transparent;transition:transform .2s ease,box-shadow .2s ease,background .2s ease;white-space:nowrap;}
+  .btn-primary{background:linear-gradient(135deg,var(--gold-strong),var(--gold-deep));color:#151006;box-shadow:0 10px 30px -8px rgba(212,175,106,0.6);}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 36px -8px rgba(212,175,106,0.75);}
+  @media(max-width:480px){.btn{padding:16px 26px;font-size:15.5px;white-space:normal;text-align:center;}}
+  header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,11,0.7);backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .3s ease,background .3s ease;}
+  header.scrolled{border-bottom-color:var(--border);background:rgba(10,10,11,0.92);}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:var(--maxw);margin:0 auto;gap:10px;}
+  .brand{display:flex;align-items:center;gap:12px;min-width:0;flex:1 1 auto;}
+  .brand img{width:44px;height:44px;border-radius:50%;object-fit:cover;border:1px solid var(--border-strong);flex:none;}
+  .brand-name{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;letter-spacing:0.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;}
   .brand-name span{color:var(--gold);}
-  .back{font-size:13.5px;color:var(--text-muted);}
-  h1{font-size:clamp(28px,4vw,38px);margin-bottom:8px;}
-  .updated{color:var(--text-faint);font-size:13px;margin-bottom:36px;}
-  h2{font-size:20px;margin:36px 0 12px;color:var(--gold);}
-  p{color:var(--text-muted);margin-bottom:14px;font-size:15.5px;}
-  ul{color:var(--text-muted);margin:0 0 14px 20px;font-size:15.5px;}
-  li{margin-bottom:6px;}
-  strong{color:var(--text);}
-  footer{border-top:1px solid var(--border);padding:26px 24px;text-align:center;color:var(--text-faint);font-size:12.5px;}
+  .nav-links{display:flex;gap:34px;align-items:center;}
+  .nav-links a{font-size:14px;color:var(--text-muted);transition:color .2s;}
+  .nav-links a:hover{color:var(--text);}
+  .nav-cta{display:flex;align-items:center;gap:16px;flex:none;}
+  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:6px;}
+  .burger span{width:22px;height:2px;background:var(--text);display:block;}
+  .mobile-menu{display:none;position:fixed;inset:0 0 auto 0;top:70px;background:var(--bg-alt);border-bottom:1px solid var(--border);padding:24px;z-index:99;flex-direction:column;gap:20px;}
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{font-size:16px;color:var(--text);display:block;padding:10px 0;}
+  @media(max-width:860px){.nav-links{display:none;}.burger{display:flex;}.nav-cta .btn-primary{padding:12px 18px;font-size:13px;}}
+  @media(max-width:480px){.nav{padding:12px 16px;gap:8px;}.brand{gap:8px;}.brand img{width:36px;height:36px;}.brand-name{font-size:14.5px;max-width:38vw;}.nav-cta{gap:8px;}.nav-cta .btn-primary{padding:9px 12px;font-size:11.5px;}}
+  .breadcrumb{font-size:12.5px;color:var(--text-faint);padding:120px 0 0;}
+  .breadcrumb a{color:var(--text-faint);}
+  .breadcrumb a:hover{color:var(--gold);}
+  .policy{padding:40px 0 100px;}
+  .policy h1{font-size:clamp(28px,4vw,42px);margin-bottom:10px;}
+  .policy .updated{color:var(--text-faint);font-size:13.5px;margin-bottom:46px;}
+  .policy-body{max-width:760px;}
+  .policy-body h2{font-size:21px;margin-top:40px;margin-bottom:14px;color:var(--gold-strong);}
+  .policy-body h2:first-of-type{margin-top:0;}
+  .policy-body p{color:var(--text-muted);font-size:15.5px;margin-bottom:14px;}
+  .policy-body ul{list-style:none;padding-left:0;margin-bottom:14px;}
+  .policy-body li{font-size:15.5px;color:var(--text-muted);padding-left:20px;position:relative;margin-bottom:8px;}
+  .policy-body li::before{content:"•";position:absolute;left:0;color:var(--gold);}
+  .policy-body strong{color:var(--text);}
+  .policy-body a{color:var(--gold);text-decoration:underline;}
+  .toc{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:26px 28px;margin-bottom:40px;max-width:760px;}
+  .toc h2{font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+  .toc ol{list-style:decimal;padding-left:20px;display:flex;flex-direction:column;gap:8px;}
+  .toc a{font-size:14.5px;color:var(--text-muted);}
+  .toc a:hover{color:var(--gold);}
+  .contact-box{margin-top:40px;border-left:2px solid var(--gold);background:rgba(212,175,106,0.06);padding:20px 24px;border-radius:0 10px 10px 0;max-width:760px;}
+  .contact-box p{margin-bottom:6px;font-size:14.5px;}
+  footer{padding:50px 0 30px;border-top:1px solid var(--border);background:var(--bg);}
+  .footer-grid{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px;margin-bottom:30px;}
+  .footer-links{display:flex;gap:26px;flex-wrap:wrap;}
+  .footer-links a{font-size:13.5px;color:var(--text-muted);}
+  .footer-links a:hover{color:var(--gold);}
+  .footer-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:12.5px;color:var(--text-faint);padding-top:24px;border-top:1px solid var(--border);}
+  .social-ic{width:36px;height:36px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text-muted);transition:all .2s;}
+  .social-ic:hover{border-color:var(--gold);color:var(--gold);}
+  .wa-float{position:fixed;bottom:24px;right:24px;z-index:90;width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--gold-strong),var(--gold-deep));display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px -8px rgba(212,175,106,0.6);color:#151006;}
+  .wa-float:hover{transform:scale(1.06);}
+  .scroll-progress{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--gold),var(--gold-strong));z-index:200;transition:width .1s linear;}
 </style>
 </head>
 <body>
 
-<header class="top">
-  <div class="wrap">
-    <a href="/" class="brand-name">Turbo<span>Tráfego</span></a>
-    <a href="/" class="back">&larr; Voltar ao site</a>
+<div class="bg-fx" aria-hidden="true"><span class="b1"></span><span class="b2"></span></div>
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<header id="siteHeader">
+  <div class="nav">
+    <a href="/" class="brand">
+      <img src="/logo.png" alt="Logótipo TurboTráfego">
+      <span class="brand-name">Turbo<span>Tráfego</span></span>
+    </a>
+    <nav class="nav-links">
+      <a href="/#servicos">Serviços</a>
+      <a href="/#resultados">Resultados</a>
+      <a href="/#sobre">Sobre</a>
+      <a href="/#faq">FAQ</a>
+      <a href="/#contacto">Contacto</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-primary" href="https://wa.me/351928406024?text=Ol%C3%A1%20Miguel%2C%20tenho%20uma%20quest%C3%A3o%20sobre%20a%20Pol%C3%ADtica%20de%20Privacidade." target="_blank" rel="noopener">Falar no WhatsApp</a>
+      <button class="burger" id="burgerBtn" aria-label="Abrir menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="/#servicos">Serviços</a>
+    <a href="/#resultados">Resultados</a>
+    <a href="/#sobre">Sobre</a>
+    <a href="/#faq">FAQ</a>
+    <a href="/#contacto">Contacto</a>
   </div>
 </header>
 
-<main class="wrap">
-  <h1>Política de Privacidade</h1>
-  <p class="updated">Última atualização: 7 de setembro de 2026</p>
+<div class="wrap breadcrumb"><a href="/">TurboTráfego</a> / Política de Privacidade</div>
 
-  <p>Esta política explica de que forma o site <strong>agencia.turbotrafego.pt</strong> trata dados pessoais, em conformidade com o Regulamento Geral sobre a Proteção de Dados (RGPD) e a legislação portuguesa aplicável.</p>
+<section class="policy">
+  <div class="wrap">
+    <h1>Política de Privacidade</h1>
+    <p class="updated">Última atualização: 11 de novembro de 2026</p>
 
-  <h2>1. Responsável pelo tratamento</h2>
-  <p>O responsável pelo tratamento dos dados é <strong>Miguel Conceição</strong>, atuando sob a marca <strong>TurboTráfego</strong>. Contacto: <a href="mailto:comercial@turbotrafego.pt">comercial@turbotrafego.pt</a> · +351 928 406 024.</p>
+    <div class="toc">
+      <h2>Índice</h2>
+      <ol>
+        <li><a href="#responsavel">Quem é o responsável pelo tratamento</a></li>
+        <li><a href="#dados">Que dados recolhemos</a></li>
+        <li><a href="#finalidades">Para que usamos os seus dados</a></li>
+        <li><a href="#fundamento">Fundamento legal do tratamento</a></li>
+        <li><a href="#partilha">Partilha de dados com terceiros</a></li>
+        <li><a href="#cookies">Cookies e tecnologias semelhantes</a></li>
+        <li><a href="#conservacao">Prazo de conservação dos dados</a></li>
+        <li><a href="#direitos">Os seus direitos (RGPD)</a></li>
+        <li><a href="#seguranca">Segurança da informação</a></li>
+        <li><a href="#alteracoes">Alterações a esta política</a></li>
+        <li><a href="#contacto-dpo">Contactos</a></li>
+      </ol>
+    </div>
 
-  <h2>2. Dados recolhidos neste site</h2>
-  <p>Este site é uma página institucional estática e <strong>não contém formulários de contacto</strong> nem sistemas de registo. Não recolhemos, armazenamos ou processamos dados pessoais diretamente através do site.</p>
-  <p>O único ponto de contacto disponível é um botão que abre uma conversa no <strong>WhatsApp</strong>. Ao utilizar esse botão, a conversa e os dados associados (número de telefone, nome de perfil, conteúdo das mensagens) são processados pela Meta Platforms Ireland Limited, responsável pelo WhatsApp, de acordo com a política de privacidade própria dessa plataforma. A TurboTráfego não tem acesso a esses dados fora da conversa iniciada pelo próprio utilizador.</p>
+    <div class="policy-body">
+      <h2 id="responsavel">1. Quem é o responsável pelo tratamento</h2>
+      <p>A TurboTráfego, representada por Miguel Conceição, com atividade em Portugal, é a responsável pelo tratamento dos dados pessoais eventualmente recolhidos através do site <strong>agencia.turbotrafego.pt</strong> e dos canais de contacto associados (WhatsApp, email e redes sociais).</p>
 
-  <h2>3. Cookies e tecnologias de rastreio</h2>
-  <p>Este site <strong>não utiliza cookies próprios nem de terceiros para fins de rastreio, análise de tráfego ou publicidade</strong>. Não são instalados scripts de análise (como Google Analytics) nem pixels de publicidade (como Meta Pixel) na versão atual do site.</p>
-  <p>O site carrega tipos de letra alojados nos servidores da Google (Google Fonts), o que pode implicar a transferência do endereço IP do visitante para a Google no momento do carregamento da página. Esta é uma transferência técnica necessária ao carregamento da página, sem finalidade de rastreio.</p>
-  <p>Caso esta política mude no futuro, nomeadamente pela introdução de ferramentas de análise ou de publicidade, será apresentado um aviso de consentimento de cookies antes da ativação desses scripts, e esta página será atualizada em conformidade.</p>
+      <h2 id="dados">2. Que dados recolhemos</h2>
+      <p>Esta página é institucional e não contém formulários de contacto, registo ou subscrição. O site, por si só, não recolhe nem armazena dados pessoais dos visitantes.</p>
+      <p>O único ponto de contacto disponível é o botão de WhatsApp. Se nos escrever por esse meio, os dados trocados (nome, número de telefone, conteúdo da conversa) são tratados diretamente por nós para lhe respondermos, e são processados também pela Meta/WhatsApp, nos termos da política de privacidade própria dessa plataforma, fora do controlo da TurboTráfego.</p>
+      <p>Este site não utiliza atualmente cookies de analítica ou de publicidade, nem pixels de rastreio (ver ponto 6).</p>
 
-  <h2>4. Base legal e finalidade</h2>
-  <p>Na ausência de recolha direta de dados, não existe tratamento com base em consentimento no âmbito deste site. Caso o utilizador opte por contactar através do WhatsApp, a base legal aplicável é a execução de diligências pré-contratuais a pedido do próprio titular dos dados.</p>
+      <h2 id="finalidades">3. Para que usamos os seus dados</h2>
+      <p>Quando nos contacta via WhatsApp, usamos a informação partilhada apenas para:</p>
+      <ul>
+        <li>Responder a pedidos de contacto, análises gratuitas e propostas comerciais.</li>
+        <li>Prestar os serviços contratados (gestão de tráfego pago, redes sociais, automações e agentes de IA).</li>
+        <li>Enviar comunicações relacionadas com os serviços prestados ou solicitados.</li>
+        <li>Cumprir obrigações legais e contabilísticas.</li>
+      </ul>
 
-  <h2>5. Direitos do titular dos dados</h2>
-  <p>Nos termos do RGPD, qualquer pessoa cujos dados sejam processados no âmbito de um contacto com a TurboTráfego tem direito a:</p>
-  <ul>
-    <li>Aceder aos seus dados pessoais;</li>
-    <li>Solicitar a retificação de dados incorretos ou incompletos;</li>
-    <li>Solicitar o apagamento dos seus dados;</li>
-    <li>Opor-se ao tratamento ou solicitar a sua limitação;</li>
-    <li>Solicitar a portabilidade dos dados;</li>
-    <li>Apresentar reclamação junto da Comissão Nacional de Proteção de Dados (CNPD), em <a href="https://www.cnpd.pt" target="_blank" rel="noopener">www.cnpd.pt</a>.</li>
-  </ul>
-  <p>Para exercer qualquer um destes direitos, contacte <a href="mailto:comercial@turbotrafego.pt">comercial@turbotrafego.pt</a>.</p>
+      <h2 id="fundamento">4. Fundamento legal do tratamento</h2>
+      <p>O tratamento dos dados que eventualmente nos fornece via WhatsApp baseia-se, conforme o caso: na execução de um contrato ou de diligências pré-contratuais (ex.: resposta a um pedido de análise gratuita), no consentimento que dá ao iniciar essa conversa, e no interesse legítimo da TurboTráfego em responder a pedidos de contacto e prestar os serviços solicitados.</p>
 
-  <h2>6. Alterações a esta política</h2>
-  <p>Esta política pode ser atualizada sempre que existam alterações relevantes na forma como o site funciona ou trata dados. A data de última atualização está indicada no topo desta página.</p>
-</main>
+      <h2 id="partilha">5. Partilha de dados com terceiros</h2>
+      <p>Não partilhamos, vendemos nem cedemos dados pessoais a terceiros para fins de marketing alheios à TurboTráfego. A única exceção é a Meta/WhatsApp, enquanto plataforma onde a conversa decorre, nos termos da política de privacidade dessa empresa. Fornecedores de alojamento do site podem ter acesso técnico aos ficheiros do site, sem acesso a dados pessoais de visitantes, uma vez que o site não os recolhe.</p>
+
+      <h2 id="cookies">6. Cookies e tecnologias semelhantes</h2>
+      <p>Este site não utiliza cookies próprios nem de terceiros para fins de análise, publicidade ou rastreio, nem tem instalado qualquer pixel de publicidade (Meta Ads, Google Ads) ou ferramenta de analítica (Google Analytics). O único recurso externo carregado é o Google Fonts, para apresentação da tipografia, o que implica uma transferência técnica do endereço IP para servidores da Google, sem finalidade de rastreio.</p>
+      <p>Esta é a situação atual do site. Está prevista, em breve, a introdução de ferramentas de analítica e de publicidade (como Meta Pixel e Google Ads) para campanhas da TurboTráfego. Quando essas ferramentas forem ativadas, esta política será atualizada antes da sua entrada em funcionamento, e será apresentado um aviso de consentimento de cookies, caso aplicável.</p>
+
+      <h2 id="conservacao">7. Prazo de conservação dos dados</h2>
+      <p>Conservamos os dados pessoais apenas durante o tempo necessário para cumprir as finalidades descritas nesta política, ou enquanto durar a relação comercial, e ainda pelo período exigido por obrigações legais e fiscais aplicáveis em Portugal.</p>
+
+      <h2 id="direitos">8. Os seus direitos (RGPD)</h2>
+      <p>Nos termos do Regulamento Geral sobre a Proteção de Dados, tem direito a:</p>
+      <ul>
+        <li>Aceder aos dados pessoais que detemos sobre si.</li>
+        <li>Solicitar a rectificação de dados incorretos ou incompletos.</li>
+        <li>Solicitar o apagamento dos seus dados ("direito ao esquecimento"), quando aplicável.</li>
+        <li>Opor-se ao tratamento ou solicitar a limitação do mesmo.</li>
+        <li>Solicitar a portabilidade dos seus dados.</li>
+        <li>Retirar o consentimento prestado, em qualquer momento, sem afetar a licitude do tratamento anterior.</li>
+        <li>Apresentar reclamação junto da Comissão Nacional de Proteção de Dados (CNPD), em <a href="https://www.cnpd.pt" target="_blank" rel="noopener">www.cnpd.pt</a>.</li>
+      </ul>
+      <p>Para exercer qualquer um destes direitos, contacte-nos através dos dados indicados na secção 11.</p>
+
+      <h2 id="seguranca">9. Segurança da informação</h2>
+      <p>Adotamos medidas técnicas e organizativas adequadas para proteger os seus dados pessoais contra acesso não autorizado, perda, alteração ou divulgação indevida. Apesar destes esforços, nenhum sistema de transmissão ou armazenamento de dados é totalmente seguro, e não podemos garantir segurança absoluta.</p>
+
+      <h2 id="alteracoes">10. Alterações a esta política</h2>
+      <p>Esta Política de Privacidade pode ser atualizada periodicamente, para refletir alterações nos nossos serviços ou na legislação aplicável. A data da última atualização está indicada no topo desta página.</p>
+
+      <h2 id="contacto-dpo">11. Contactos</h2>
+      <p>Para qualquer questão relacionada com esta Política de Privacidade ou com o tratamento dos seus dados pessoais, contacte-nos:</p>
+      <div class="contact-box">
+        <p><strong>Email:</strong> <a href="mailto:comercial@turbotrafego.pt">comercial@turbotrafego.pt</a></p>
+        <p><strong>WhatsApp / Telefone:</strong> <a href="https://wa.me/351928406024" target="_blank" rel="noopener">+351 928 406 024</a></p>
+        <p><strong>Área de atuação:</strong> Portugal</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <footer>
-  © 2026 TurboTráfego. Todos os direitos reservados.
+  <div class="wrap">
+    <div class="footer-grid">
+      <a href="/" class="brand">
+        <img src="/logo.png" alt="Logótipo TurboTráfego">
+        <div>
+          <div class="brand-name">Turbo<span>Tráfego</span></div>
+          <div style="font-size:12px;color:var(--text-faint);">Sistemas de tráfego, redes sociais e IA para empresas em Portugal</div>
+        </div>
+      </a>
+      <div class="footer-links">
+        <a href="/#servicos">Serviços</a>
+        <a href="/#resultados">Resultados</a>
+        <a href="/#sobre">Sobre</a>
+        <a href="/#faq">FAQ</a>
+        <a href="/#contacto">Contacto</a>
+      </div>
+      <div style="display:flex;gap:10px;">
+        <a class="social-ic" href="https://www.instagram.com/turbotrafego_gt/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a class="social-ic" href="https://www.facebook.com/turbotrafego.pt?locale=pt_PT" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 8.5h2V5h-2c-2.2 0-4 1.8-4 4v2H9v3.5h2V21h3.5v-6.5H17l.5-3.5h-3V9c0-.6.4-1 1-1z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 TurboTráfego. Todos os direitos reservados. · <a href="/privacidade.html" style="color:inherit;text-decoration:underline;">Política de Privacidade</a></span>
+      <span>agencia.turbotrafego.pt · comercial@turbotrafego.pt · +351 928 406 024</span>
+    </div>
+  </div>
 </footer>
+
+<a class="wa-float" href="https://wa.me/351928406024?text=Ol%C3%A1%20Miguel%2C%20tenho%20uma%20quest%C3%A3o%20sobre%20a%20Pol%C3%ADtica%20de%20Privacidade." target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.72.45 3.4 1.3 4.88L2.05 22l5.36-1.4a9.9 9.9 0 0 0 4.63 1.18h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.12h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.15 8.15 0 0 1-1.27-4.37c0-4.54 3.7-8.24 8.26-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.25 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.17.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.04-.38-1.99-1.22-.73-.66-1.23-1.46-1.37-1.71-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.35-.76-1.85-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.86.84-.86 2.06 0 1.21.88 2.38 1 2.55.12.17 1.74 2.66 4.22 3.72.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.16-.48-.28z"/></svg>
+</a>
+
+<script>
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => { header.classList.toggle('scrolled', window.scrollY > 20); });
+
+  const burger = document.getElementById('burgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  burger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+  const scrollBar = document.getElementById('scrollProgress');
+  function updateScrollProgress() {
+    const h = document.documentElement;
+    const pct = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+    scrollBar.style.width = pct + '%';
+  }
+  window.addEventListener('scroll', updateScrollProgress, { passive: true });
+  updateScrollProgress();
+</script>
 
 </body>
 </html>
