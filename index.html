@@ -440,6 +440,49 @@
   .contact-row a,.contact-row span{font-size:14.5px;}
   .contact-row small{display:block;color:var(--text-faint);font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;}
 
+  /* LEAD FORM */
+  .lead-form-section{background:var(--bg);border-top:1px solid var(--border);}
+  .lead-form{
+    background:var(--card);border:1px solid var(--border-strong);border-radius:var(--radius);
+    padding:36px;max-width:640px;margin:36px auto 0;
+  }
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  @media(max-width:600px){.form-row{grid-template-columns:1fr;}}
+  .form-group{margin-bottom:18px;}
+  .form-group label{display:block;font-size:12.5px;color:var(--text-muted);margin-bottom:7px;text-transform:uppercase;letter-spacing:.04em;}
+  .form-group input[type="text"],.form-group input[type="email"],.form-group input[type="tel"]{
+    width:100%;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:9px;
+    padding:12px 14px;color:var(--text);font-size:14.5px;font-family:inherit;transition:border-color .2s;
+  }
+  .form-group input::placeholder{color:var(--text-faint);}
+  .form-group input:focus{outline:none;border-color:var(--gold);}
+  .radio-group{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px;}
+  @media(max-width:600px){.radio-group{grid-template-columns:1fr;}}
+  .radio-option{
+    display:flex;align-items:center;gap:9px;border:1px solid var(--border);border-radius:9px;
+    padding:11px 14px;font-size:13.5px;color:var(--text-muted);cursor:pointer;transition:border-color .2s,color .2s,background .2s;
+  }
+  .radio-option:hover{border-color:var(--border-strong);}
+  .radio-option input{accent-color:var(--gold);flex:none;}
+  .radio-option.checked{border-color:var(--gold);color:var(--text);background:rgba(212,175,106,0.07);}
+  #lead-form-status{margin-top:14px;font-size:13.5px;text-align:center;min-height:18px;}
+  #lead-form-status.form-feedback{
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    margin-top:18px;padding:16px 18px;border-radius:12px;font-size:15px;font-weight:600;
+    line-height:1.4;opacity:0;transform:translateY(-6px);transition:opacity .25s ease,transform .25s ease;
+  }
+  #lead-form-status.form-feedback.visible{opacity:1;transform:translateY(0);}
+  #lead-form-status.form-feedback .fb-icon{flex:none;font-size:20px;line-height:1;}
+  #lead-form-status.form-feedback.success{
+    background:rgba(212,175,106,0.14);border:1.5px solid var(--gold);color:var(--text);
+  }
+  #lead-form-status.form-feedback.error{
+    background:rgba(224,122,122,0.12);border:1.5px solid #e07a7a;color:var(--text);
+  }
+  @media(max-width:600px){
+    #lead-form-status.form-feedback{font-size:14px;padding:14px;}
+  }
+
   /* FOOTER */
   footer{padding:50px 0 30px;border-top:1px solid var(--border);background:var(--bg);}
   .footer-grid{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px;margin-bottom:30px;}
@@ -1228,6 +1271,50 @@
     </div>
   </section>
 
+  <!-- FORMULÁRIO DE CAPTAÇÃO DE LEADS -->
+  <section class="section-pad lead-form-section" id="formulario">
+    <div class="wrap" style="max-width:680px;">
+      <div class="section-head reveal" style="text-align:center;max-width:100%;">
+        <div class="eyebrow" style="justify-content:center;">Candidatura</div>
+        <h2>Peça a sua avaliação inicial gratuita</h2>
+        <p>Preencha os dados abaixo. A nossa equipa entra em contacto em poucas horas.</p>
+      </div>
+      <form class="lead-form reveal" id="turbo-lead-form" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="lead-nome">Nome *</label>
+            <input type="text" id="lead-nome" name="nome" placeholder="O seu nome" autocomplete="name" required>
+          </div>
+          <div class="form-group">
+            <label for="lead-email">Email *</label>
+            <input type="email" id="lead-email" name="email" placeholder="email@exemplo.pt" autocomplete="email" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="lead-whatsapp">Número de WhatsApp *</label>
+            <input type="tel" id="lead-whatsapp" name="whatsapp" placeholder="+351 9XX XXX XXX" autocomplete="tel" required>
+          </div>
+          <div class="form-group">
+            <label for="lead-nicho">Nicho de mercado *</label>
+            <input type="text" id="lead-nicho" name="nicho" placeholder="Ex: Clínica de estética" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Faturação mensal atual do negócio *</label>
+          <div class="radio-group" id="lead-faturacao-group">
+            <label class="radio-option"><input type="radio" name="faturacao" value="entre 0 e 5K" required> Entre 0€ e 5.000€</label>
+            <label class="radio-option"><input type="radio" name="faturacao" value="entre 5k e 10K"> Entre 5.000€ e 10.000€</label>
+            <label class="radio-option"><input type="radio" name="faturacao" value="entre 10k e 20k"> Entre 10.000€ e 20.000€</label>
+            <label class="radio-option"><input type="radio" name="faturacao" value="mais de 20K"> Mais de 20.000€</label>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;" id="lead-form-submit">Pedir Avaliação Gratuita</button>
+        <p id="lead-form-status"></p>
+      </form>
+    </div>
+  </section>
+
 </main>
 
 <footer>
@@ -1493,6 +1580,124 @@
       }, 200);
     });
   })();
+</script>
+
+<!-- FORMULÁRIO DE LEADS: envio direto para o TurboCRM + eventos para o GTM/GA4 -->
+<script>
+(function () {
+  var form = document.getElementById('turbo-lead-form');
+  if (!form) return;
+
+  var WEBHOOK_URL = 'https://turbocrm.higgsfield.app/api/leads/193be1293f46183e52b4186e54873c85f0ac68fa8b88f09b2492999a6def5dd3';
+  var statusEl = document.getElementById('lead-form-status');
+  var submitBtn = document.getElementById('lead-form-submit');
+
+  // realça visualmente a opção de faturação selecionada
+  form.querySelectorAll('.radio-option').forEach(function (opt) {
+    var input = opt.querySelector('input');
+    input.addEventListener('change', function () {
+      form.querySelectorAll('.radio-option').forEach(function (o) { o.classList.remove('checked'); });
+      opt.classList.add('checked');
+    });
+  });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var nome = document.getElementById('lead-nome').value.trim();
+    var email = document.getElementById('lead-email').value.trim();
+    var whatsapp = document.getElementById('lead-whatsapp').value.trim();
+    var nicho = document.getElementById('lead-nicho').value.trim();
+    var faturacaoEl = form.querySelector('input[name="faturacao"]:checked');
+    var faturacao = faturacaoEl ? faturacaoEl.value : '';
+
+    function showFeedback(type, message) {
+      statusEl.className = 'form-feedback ' + type;
+      statusEl.innerHTML = '<span class="fb-icon">' + (type === 'success' ? '✓' : '⚠') + '</span><span>' + message + '</span>';
+      requestAnimationFrame(function () {
+        statusEl.classList.add('visible');
+      });
+    }
+
+    if (!nome || !email || !whatsapp || !nicho || !faturacao) {
+      showFeedback('error', 'Por favor preencha todos os campos, incluindo a faturação mensal.');
+      return;
+    }
+
+    submitBtn.disabled = true;
+    var originalLabel = submitBtn.textContent;
+    submitBtn.textContent = 'A enviar...';
+    statusEl.className = '';
+    statusEl.textContent = '';
+
+    var notas = 'Nicho: ' + nicho + ' | Faturação mensal: ' + faturacao;
+
+    fetch(WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: nome,
+        nome: nome,
+        email: email,
+        phone: whatsapp,
+        telefone: whatsapp,
+        nicho: nicho,
+        niche: nicho,
+        faturacao_mensal: faturacao,
+        revenue_range: faturacao,
+        message: notas,
+        notes: notas
+      })
+    }).then(function (res) {
+      if (!res.ok) throw new Error('Falha no envio (' + res.status + ')');
+      return res.json().catch(function () { return {}; });
+    }).then(function () {
+      showFeedback('success', 'Contacto submetido com sucesso! A nossa equipa vai entrar em contacto consigo em breve.');
+      submitBtn.textContent = originalLabel;
+      submitBtn.disabled = false;
+      form.reset();
+      form.querySelectorAll('.radio-option.checked').forEach(function (o) { o.classList.remove('checked'); });
+
+      // Evento para o Google Tag Manager / GA4
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'lead_form_submit',
+        lead_nicho: nicho,
+        lead_faturacao: faturacao
+      });
+    }).catch(function () {
+      showFeedback('error', 'Ocorreu um erro ao enviar. Tente novamente ou fale connosco pelo WhatsApp.');
+      submitBtn.textContent = originalLabel;
+      submitBtn.disabled = false;
+    });
+  });
+})();
+</script>
+
+<!-- TRACKING DE CLIQUES: botões de WhatsApp e TurboCRM (qualquer secção da página) -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest('a');
+    if (!link) return;
+    var href = link.getAttribute('href') || '';
+    window.dataLayer = window.dataLayer || [];
+
+    if (href.indexOf('wa.me') !== -1 || href.indexOf('whatsapp.com') !== -1) {
+      window.dataLayer.push({
+        event: 'whatsapp_click',
+        link_url: href,
+        link_text: (link.textContent || '').trim().slice(0, 80)
+      });
+    } else if (href.indexOf('turbocrm.higgsfield.app') !== -1) {
+      window.dataLayer.push({
+        event: 'turbocrm_click',
+        link_url: href,
+        link_text: (link.textContent || '').trim().slice(0, 80)
+      });
+    }
+  }, true);
+})();
 </script>
 
 </body>
