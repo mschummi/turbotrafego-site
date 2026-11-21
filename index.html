@@ -1708,12 +1708,18 @@
 
       fetch(WEBHOOK_URL, {
         method: 'POST',
-        // text/plain em vez de application/json: evita o preflight CORS (OPTIONS),
-        // que a API do TurboCRM nao responde com os cabecalhos CORS corretos e
-        // estava a bloquear o envio de TODOS os leads do site.
+                // mode: 'no-cors' + Content-Type: text/plain: a API do TurboCRM ainda nao
+        // devolve Access-Control-Allow-Origin na resposta, por isso em modo 'cors'
+        // normal o fetch() falha sempre (TypeError: Failed to fetch), mesmo quando
+        // o lead e criado no CRM (confirmado com testes diretos). Em 'no-cors' o
+        // pedido e enviado e recebido pelo servidor na mesma, so a resposta fica
+        // opaca (nao da para ler o status nem o corpo) - ver bloco .then() abaixo.
+        // Isto deve ser revertido assim que o backend do TurboCRM passar a responder
+        // com os cabecalhos CORS corretos.
+        mode: 'no-cors',
         headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
         body: JSON.stringify({
-                    name: nome,
+          name: nome,
           nome: nome,
           email: email,
           phone: whatsapp,
@@ -1726,9 +1732,10 @@
           notes: notas,
           origem: origem
         })
-      }).then(function (res) {
-        if (!res.ok) throw new Error('Falha no envio (' + res.status + ')');
-        return res.json().catch(function () { return {}; });
+      }).then(function () {
+        // Resposta opaca (ver nota acima): chegar aqui sem excecao ja confirma que
+        // o pedido foi enviado e recebido pelo servidor.
+        return {};
       }).then(function () {
         showFeedback('success', 'Contacto submetido com sucesso! A nossa equipa vai entrar em contacto consigo em breve.');
         submitBtn.textContent = originalLabel;
