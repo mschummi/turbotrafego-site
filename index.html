@@ -7,6 +7,11 @@
   function gtag(){dataLayer.push(arguments);}
   gtag("js", new Date());
 </script>
+  <!-- Google Ads: etiqueta de conversao (independente do GTM, para a campanha de Pesquisa da TurboTrafego) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16552238232"></script>
+  <script>
+      gtag('config', 'AW-16552238232');    
+  </script>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1703,9 +1708,12 @@
 
       fetch(WEBHOOK_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        // text/plain em vez de application/json: evita o preflight CORS (OPTIONS),
+        // que a API do TurboCRM nao responde com os cabecalhos CORS corretos e
+        // estava a bloquear o envio de TODOS os leads do site.
+        headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
         body: JSON.stringify({
-          name: nome,
+                    name: nome,
           nome: nome,
           email: email,
           phone: whatsapp,
@@ -1736,6 +1744,15 @@
           lead_faturacao: faturacao,
           lead_origem: origem
         });
+
+        // Conversão do Google Ads (campanha de Pesquisa - Geração de Leads TurboTráfego)
+        if (typeof gtag === 'function') {
+          gtag('event', 'conversion', {
+            'send_to': 'AW-16552238232/rq3RCPezn7wdEJi53NQ9',
+            'value': 1.0,
+            'currency': 'EUR'
+          });
+        }
 
         // se foi submetido a partir do pop-up, fecha-o automaticamente passado um momento
         if (form.dataset.popup === 'true' && typeof window.__turboClosePopup === 'function') {
